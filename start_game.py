@@ -22,10 +22,24 @@ class AlienInvasion:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RIGHT:
+                    # Переместить корабль в право
+                    self.ship.moving_right = True
+                elif event.key == pygame.K_LEFT:
+                    # Переместить корабль в лево
+                    self.ship.moving_left = True
+
+            elif event.type == pygame.KEYUP:
+                if event.key == pygame.K_RIGHT:
+                    self.ship.moving_right = False
+                elif event.key == pygame.K_LEFT:
+                    self.ship.moving_left = False
 
     def _update_screen(self):
         """При каждом проходе цикла перерисовывается экран"""
         self.screen.fill(self.setting.bg_color)
+        self.ship.update()
         self.ship.blitme()
 
         """Отображение последнего экрана"""
