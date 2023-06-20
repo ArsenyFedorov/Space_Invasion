@@ -11,10 +11,15 @@ class Setting:
         self.bg_color = (230, 230, 230)
         self.icon = pygame.image.load("Picture/UFO.png")
         # Настройки корабля
-        self.ship_speed = 0.5
+        self.ship_speed = 2
         # Настройка снаряда
-        self.bullet_spead = 0.5
+        self.bullet_spead = 3
         self.bullet_width = 3
         self.bullet_height = 15
         self.bullet_color = (51, 255, 255)
         self.bullet_allowed = 3
+        # Настройка НЛО
+        self.alien_speed = 0.2
+        self.fleet_drop_speed = 10
+        self.fleet_direction = 1
+
