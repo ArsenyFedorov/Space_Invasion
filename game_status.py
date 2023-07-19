@@ -4,6 +4,7 @@ class GameStatus:
         self.setting = ai_game.setting
         self.reset_status()
         self.score = 0
+        self.level = 1
         # Игра запускается в не активном состояние
         self.game_active = False
         # Рекорд не должен сбрасываться

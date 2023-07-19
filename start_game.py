@@ -21,7 +21,7 @@ class AlienInvasion:
         self.screen = pygame.display.set_mode((self.setting.screen_width, self.setting.screen_height))
         pygame.display.set_caption("Star Wars")
         pygame.display.set_icon(self.setting.icon)
-        self.ship = Ship(Setting)
+        self.ship = Ship(Setting())
         self.bullets = pygame.sprite.Group()
         self.aliens = pygame.sprite.Group()
         # Создание экземпляра для игровой статистики
@@ -54,6 +54,7 @@ class AlienInvasion:
             self.status.reset_status()
             self.status.game_active = True
             self.sb.prep_score()
+            self.sb.prep_ships()
             # Очистка списков пришельцев и снарядов
             self.aliens.empty()
             self.bullets.empty()
@@ -161,6 +162,10 @@ class AlienInvasion:
             self.bullets.empty()
             self._create_fleet()
             self.setting.increase_speed()
+
+            # Увеличение уровня
+            self.status.level += 1
+            self.sb.prep_level()
         if collisions:
             for alien in collisions.values():
                 self.status.score += self.setting.alien_points * len(alien)
@@ -177,6 +182,7 @@ class AlienInvasion:
         if self.status.ship_left > 1:
             # Уменьшение ship_left
             self.status.ship_left -= 1
+            self.sb.prep_ships()
             # Очистка списков пришельцев и снарядов
             self.aliens.empty()
             self.bullets.empty()
